@@ -2,7 +2,6 @@
 *.json
 *.gz
 *.zip
-ruscorpora_upos_skipgram_600_10_2017.json
-ruscorpora_upos_cbow_300_20_2019.json
-ruscorpora_upos_skipgram_600_10_2017.json
-.ipynb_checkpoints/verbal fluency different models-checkpoint.ipynb
+.ipynb_checkpoints/*
+/models/*
+.idea/*
