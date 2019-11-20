@@ -1,5 +1,5 @@
-model_name, cosine_range, words_not_foundruscorpora_upos_cbow_300_20_2019, 0.9375699, 10.5ruscorpora_upos_skipgram_600_10_2017, 0.64160764, 6.0tayga_upos_skipgram_300_2_2019, 0.73785716, 6.0ruwikiruscorpora_upos_skipgram_300_2_2019, 0.65439475, 10.5
-ruscorpora_upos_cbow_300_20_2019, 0.9375699, 10.5
-ruscorpora_upos_skipgram_600_10_2017, 0.64160764, 6.0
-tayga_upos_skipgram_300_2_2019, 0.73785716, 6.0
-ruwikiruscorpora_upos_skipgram_300_2_2019, 0.65439475, 10.5
+model_name, cosine_range, words_not_found
+ruscorpora_upos_cbow_300_20_2019,0.9375699,11
+ruscorpora_upos_skipgram_600_10_2017,0.64160764,6
+tayga_upos_skipgram_300_2_2019,0.73785716,6
+ruwikiruscorpora_upos_skipgram_300_2_2019,0.65439475,11
