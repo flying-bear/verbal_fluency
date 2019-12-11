@@ -1,0 +1,47 @@
+ID,ID in proj,Age,Education years,Gender,Handedness,native language,TT score
+1,C29,55,14,m,right,russian,30
+2,C30,75,13,f,right,russian,30.5
+3,C31,36,15,m,right,russian,35
+4,C32,20,14,f,right,russian,35
+5,C84,44,13,f,right,russian,35.5
+6,C85,72,11,f,right,russian,33.5
+7,C86,66,10,m,right,russian,34
+8,C89,71,19,m,right,russian,32
+9,C90,62,19,m,right ,russian,33.5
+10,C91,66,13,f,right,russian,34
+11,C101,48,15,f,right,russian,34
+12,C21,18,12,m,right,russian,"35,5"
+13,C22,20,14,m,right,russian,36
+14,C23,71,17,f,right,russian,36
+15,C24,18,12,f,right,russian,36
+16,C49,31,19,m,right,russian,36
+17,C79,52,15,f,right,russian,36
+18,C80,32,19,f,right,russian,34.5
+19,C81,34,15,m,left,russian,33
+20,C82,33,15,f,right,russian,35.5
+21,C83,22,14,m,right,russian,33
+22,C48,31,18,f,right,russian,36
+23,C25,19,13,m,right,russian,"33,5"
+24,C26,19,13,m,right,russian,36
+25,C27,19,13,f,right,russian,36
+26,C28,72,"16,5",m,right,russian,"33,5"
+27,C50,55,19,m,right,russian,35
+28,C53,29,19,m,right,russian,
+29,C54,50,12,m,right,russian,"32,5"
+30,C55,58,,m,right,russian,
+31,C46,19,13,m,right,russian,35
+32,C56,25,19,m,right,russian,
+33,C47,53,16,m,right,russian,36
+34,C52,23,17,f,right,russian,
+35,C73,20,13,m,right,russian,36
+37,C76,43,18,f,right,russian,36
+38,C77,45,19,f,right,russian,36
+39,C78,28,15,f,right,russian,35
+40,C97,72,15,f,right,russian,35
+41,C98,20,14,f,right,russian,36
+42,C99,18,12,f,right,russian,35
+43,C100,71,13,f,left to right,russian,33
+44,C3,44,15,f,right,russian,"35,5"
+45,C4,27,15,m,right,russian,35
+46,C8,29,15,f,right,russian,36
+47,C11,59,12,f,right,russian,
