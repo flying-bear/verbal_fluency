@@ -1,0 +1,104 @@
+Task:
+Categorical verbal fluency test - naming as many items from a semantic category as possible in one minute.
+Widely used in 
+   - neurology 
+   - psychiatry
+   - clinical linguistics
+
+Methods of scoring:
+   - traditional: unique words produced
+   - word2vec pairwise similarity of adjacent words
+   - clusters produced
+
+Usually, the number of clusters is assessed manually, but it is
+   - time-consuming
+   - inconsistent (high inter-rater agreement is hard to achieve)
+   - no instruction exists for Russian (Drozdova et al 2015)
+
+Several methods of automated cluster detection were proposed, most notably Kim et al 2019. This article is an adaptation of some of the methods used in Kim et al to the Russian language.
+
+Data:
+46 healthy speakers of Russian
+   - aging from 18 to 75 (M = 41.17, SD =
+19.53)
+   - 10 to 19 years of education (M = 14.94, SD = 2.54), 
+   - 24 females
+(linearly independent data)
+46 one category fluency task for the “animal” category transcripts, lemmatized
+   - manual clustering by a trained psychiatrist
+
+
+Model selection:
+   - from models (https://rusvectores.org/ru/models/) scoring the highest  on semantic similarity tasks selected 4 models
+  - assessed number of out-of-vocabulary words (oov, e.g. "трубкозуб")
+  - assessed the range of cosine similarity as a measure of how well-represented animal lexicon is
+Selected the model with the lowest oov and highest range of cosine similarity: tayga_upos_skipgram_300_2_2019 with a 5 bn words training set.
+
+Clustering aproximation:
+   - threshold cutoff:
+      - at the median in the whole dataset (c_cut_median)
+      - at the mean in the whole dataset (c_cut_mean)
+      - at the 25th percentile in the whole dataset (c_cut_p25)
+      - at the average cosine similarity of each participant (c_cut_mean_local)
+   - sharp change (c_sharp_) at a difference factor of:
+      - 0.5
+      - 0.8
+      - 0.95
+      - 1.05
+      - 1.005
+      - 1.00001
+
+Example of splits by different methods:
+   - correct
+слон || заяц, волк, олень || кенгуру, жираф || суслик, хомячок, кролик || пингвин, страус || носорог, крокодил || бурый медведь, белый медведь, панда, гризли || уж, еж || колобок || удав || фазан || козел
+   - median
+слон || заяц, волк, олень, кенгуру, жираф || суслик, хомячок, кролик || пингвин, страус, носорог, крокодил || бурый медведь, белый медведь || панда || гризли || уж || еж || колобок || удав || фазан || козел
+   - local mean
+слон, заяц, волк, олень, кенгуру, жираф || суслик, хомячок, кролик, пингвин, страус, носорог, крокодил || бурый медведь, белый медведь || панда || гризли || уж || еж || колобок || удав || фазан || козел
+   - sharp 0.8
+слон || заяц, волк || олень || кенгуру || жираф || суслик || хомячок || кролик || пингвин || страус || носорог || крокодил || бурый медведь, белый медведь || панда || гризли || уж, еж, колобок || удав || фазан || козел
+   - sharp 1.00001
+слон, заяц, волк, олень || кенгуру, жираф || суслик, хомячок, кролик || пингвин, страус, носорог, крокодил || бурый медведь, белый медведь || панда || гризли || уж, еж, колобок || удав, фазан, козел
+
+The number of clusters:
+Table - average for each model
+Table - correlations
+as we can see, all methods of getting the number of splits are good enough at approximating manual calculation, the best being
+   - cutting at the sharp changes with factors 0.5, 0.95, 0.8, 1.05; r ≈ 0.73 for 0.5, r ≈ 0.7 for others
+   - cutting at the mean cosine similarity within the list (r ≈ 0.7)
+however, we know that the factor of 0.5 produces way too many splits, and the best at approximating not the ranks but the actual numbers are probably the ones with approximately the same mean split numbers (c_sharp_0.95 and c_cut_mean_local)
+
+The positioning of clusters:
+Metrics table
+now we see that for a more precision-oriented task, the best metrics (at least on this model) are:
+   - cutoff at the local mean
+   - sharp change metrics (1.05 to 0.95)
+   - cutoff at the mean
+overall the metrics are good-ish (0.7 is not all that good), but tolerable
+
+Correlations with age
+in theory (and in Kim et al 2019) older people produce fewer clusters And we also have the same result: p  ≈  0.01 (p<0.05), r  ≈  -0.37
+Correlations table
+Ok, so all, but sharp change at 0.00001, do correlate negatively with age.
+The strongest are:
+  - cutting at the local mean (r  ≈  -0.4, p  ≈  0.006)
+  - sharp cahge at 0.5 (r  ≈  -0.38, p  ≈  0.009)
+  - cutting at the mean (r  ≈  -0.35, p  ≈  0.01)
+let us note here, that metrics of cutting at the local mean and sharp cahge at 0.5 are more strongly correlated with age than manual splits!
+Nothing else is correlated (number of splits by any metric with education years or gender, age or education years with oov or average cosine similarity - but we did not expect it to)
+
+Results
+It is totally possible to approximate both number of clusters and thier positioning
+the best metrics across the tasks are:
+   - cutoff at the local mean (proposed, but not realized in Kim et al)
+   - sharp change at 0.95
+   - cutoff at the mean or median
+
+Problems
+the problems might be due to:
+  - only one manual tagging (might be low inter-rater agreement, if we tried many)
+  - tagging non-semantic associations as one cluster ("утка-лебедь-рак-щука")
+  - out-of-vocabulary issues
+  - lack of training for the specific purpose (poor representation of animal lexicon)
+
+The last to can be solved by transfer learning)
