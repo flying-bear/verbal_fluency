@@ -16,7 +16,8 @@ dd <- column_to_rownames(dd, var = "ID")
 autoplot(prcomp(na.omit(only_analyze)), data = dd, 
          colour = 'diagnosis', label = TRUE, label.size = 5,
          loadings = TRUE, loadings.colour = 'blue', loadings.label.repel=T,
-         loadings.label = TRUE, loadings.label.size = 5)+ggtitle('Principal Correspondence Analysis using ggfortify, biplot on verbal fluency task')
+         loadings.label = TRUE, loadings.label.size = 5)+ggtitle('Principal Correspondence Analysis using ggfortify, biplot on verbal fluency task with PANSS')
+ggsave("PCA_PANSS_animals.jpeg", width = 50, height = 27, units = "cm")
 
 only_analyze = select(to_analyze, -education, -binary_diagnosis, -diagnosis, -HDRS, -Y2RS, -ID, -PANSS_Total, -PANSS_O, -PANSS_P, -PANSS_N, -TD, -cluster_degree)
 only_analyze %>% 
@@ -29,3 +30,4 @@ autoplot(prcomp(na.omit(only_analyze)), data = dd,
          colour = 'diagnosis', label = TRUE, label.size = 5,
          loadings = TRUE, loadings.colour = 'blue', loadings.label.repel=T,
          loadings.label = TRUE, loadings.label.size = 5)+ggtitle('Principal Correspondence Analysis using ggfortify, biplot on verbal fluency task')
+ggsave("PCA_animals.jpeg", width = 50, height = 27, units = "cm")
